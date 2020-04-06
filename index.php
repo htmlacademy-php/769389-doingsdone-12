@@ -82,19 +82,14 @@ $tasks = [
                 <h2 class="content__side-heading">Проекты</h2>
 
                 <nav class="main-navigation">
-                <?php
-                $i = 0;
-                $num = count($categories);
-                while ($i < $num):
-                ?>
+                <?php foreach ($categories as $value): ?>
                     <ul class="main-navigation__list">
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?=$categories[$i];?></a>
+                            <a class="main-navigation__list-item-link" href="#"><?=$value;?></a>
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
                     </ul>
-                <?php $i++; ?>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
                 </nav>
 
                 <a class="button button--transparent button--plus content__side-button"
@@ -125,14 +120,14 @@ $tasks = [
                 </div>
 
                 <table class="tasks">
-                <?php foreach ($tasks as $key => $item): ?>
-                <?php if ($show_complete_tasks === 0 && $item['completed'] == true) {
-                    continue;
+                <?php foreach ($tasks as $item):
+                        if (!$show_complete_tasks && $item['completed']) {
+                        continue;
                 }?>
-                    <tr class="tasks__item task">
-                        <td class="task__select <?= ($item['completed'] == true) ? 'task--completed':'';?>">
+                    <tr class="tasks__item task <?= ($item['completed']) ? 'task--completed':'';?>">
+                        <td class="task__select">
                             <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
+                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?= ($item['completed']) ? 'checked':'';?>>
                                 <span class="checkbox__text"><?=$item['title'];?></span>
                             </label>
                         </td>
@@ -142,20 +137,7 @@ $tasks = [
 
                         <td class="task__date"></td>
                     </tr>
-                <?php $i++; ?>
                 <?php endforeach; ?>
-                <?php if ($show_complete_tasks): ?>
-                    <tr class="tasks__item task task--completed">
-                        <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden" type="checkbox" checked>
-                                <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
-                            </label>
-                        </td>
-                        <td class="task__date">10.10.2019</td>
-                        <td class="task__controls"></td>
-                        </tr>
-                    <?php endif; ?>
                 </table>
             </main>
         </div>
@@ -225,4 +207,3 @@ $tasks = [
 <script src="script.js"></script>
 </body>
 </html>
-
