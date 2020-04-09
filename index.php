@@ -42,6 +42,17 @@ $tasks = [
     'completed' => false
     ]
 ];
+
+//функция подсчета задач
+function calc($array_tasks, $project) {
+    $i = 0;
+    foreach ($array_tasks as $value) {
+        if ($value['category'] == $project) {
+            $i++;
+        }
+    }
+    return $i;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -86,7 +97,7 @@ $tasks = [
                     <ul class="main-navigation__list">
                         <li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#"><?=$value;?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <span class="main-navigation__list-item-count"><?=calc($tasks, $value);?></span>
                         </li>
                     </ul>
                 <?php endforeach; ?>
