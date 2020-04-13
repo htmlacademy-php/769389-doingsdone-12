@@ -51,6 +51,18 @@ function calc($array_tasks, $project) {
     return $i;
 }
 
+// функция для расчета "горящих дат" (менее 24 часов)
+function task_important($date) {
+    if(isset($date)) {
+        $today = date('d.m.y.');
+        $dif = (strtotime($date) - strtotime($today))/3600;
+        if ($dif <= 24) {
+            return true;
+        }
+    }
+    return false;
+}
+
 require_once('helpers.php');
 
 $main_block = include_template ('main.php', ['tasks' => $tasks, 'categories' => $categories, 'show_complete_tasks' => $show_complete_tasks = rand(0, 1)]);

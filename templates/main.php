@@ -44,7 +44,8 @@
                         if (!$show_complete_tasks && $item['completed']) {
                         continue;
                 }?>
-                    <tr class="tasks__item task <?= ($item['completed']) ? 'task--completed':'';?>">
+                    <tr class="tasks__item task <?= ($item['completed']) ? 'task--completed':'';?>
+                                                <?= ((task_important($item['date'])) && !$item['completed']) ? 'task--important':'';?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?= ($item['completed']) ? 'checked':'';?>>
