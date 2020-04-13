@@ -5,7 +5,7 @@
                 <?php foreach ($categories as $value): ?>
                     <ul class="main-navigation__list">
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?=$value;?></a>
+                            <a class="main-navigation__list-item-link" href="#"><?=htmlspecialchars($value);?></a>
                             <span class="main-navigation__list-item-count"><?=calc($tasks, $value);?></span>
                         </li>
                     </ul>
@@ -48,7 +48,7 @@
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?= ($item['completed']) ? 'checked':'';?>>
-                                <span class="checkbox__text"><?=$item['title'];?></span>
+                                <span class="checkbox__text"><?=htmlspecialchars($item['title']);?></span>
                             </label>
                         </td>
 
