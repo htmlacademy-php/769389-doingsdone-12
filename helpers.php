@@ -142,3 +142,26 @@ function include_template($name, array $data = []) {
 
     return $result;
 }
+
+//функция подсчета задач
+function calc($array_tasks, $project) {
+    $i = 0;
+    foreach ($array_tasks as $value) {
+        if ($value['project_id'] == $project['id']) {
+            $i++;
+        }
+    }
+    return $i;
+}
+
+// функция для расчета "горящих дат" (менее 24 часов)
+function task_important($date) {
+    if(isset($date)) {
+        $today = date('d.m.y.');
+        $dif = (strtotime($date) - strtotime($today))/3600;
+        if ($dif <= 24) {
+            return true;
+        }
+    }
+    return false;
+}
