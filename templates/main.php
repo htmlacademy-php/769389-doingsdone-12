@@ -6,7 +6,7 @@
                     <ul class="main-navigation__list">
                         <li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link
-                            <?= ($id_GET == $value['id']) ? 'main-navigation__list-item--active':'';?>" href="index.php?id=<?=$value['id']; ?>">
+                            <?= (intval($_GET['id']) == $value['id']) ? 'main-navigation__list-item--active':'';?>" href="index.php?id=<?=$value['id']; ?>">
                             <?=htmlspecialchars($value['title']);?>
                             </a>
                             <span class="main-navigation__list-item-count"><?=calc($task_array, $value);?></span>
