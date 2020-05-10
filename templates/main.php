@@ -43,10 +43,10 @@
                 </div>
 
                 <table class="tasks">
-                <?php foreach ($task_arr as $item):
+                    <?php foreach ($task_arr as $item):
                         if (!$show_complete_tasks && $item['status']) {
                         continue;
-                }?>
+                    }?>
                     <tr class="tasks__item task <?= ($item['status']) ? 'task--completed':'';?>
                                                 <?= ((task_important($item['deadline'])) && !$item['status']) ? 'task--important':'';?>">
                         <td class="task__select">
@@ -55,10 +55,13 @@
                                 <span class="checkbox__text"><?=htmlspecialchars($item['title']);?></span>
                             </label>
                         </td>
+                        <td class="task__file">
+                            <?php if ($item['link']): ?>
+                                <a class="download-link" href="<?='/uploads/'.$item['link']; ?>"><?=$item['link']; ?></a>
+                            <?php endif; ?>
+                        </td>
                         <td class="task__date"><?=$item['deadline'];?></td>
-                        <td class="task__controls"></td>
-                        <td class="task__date"></td>
                     </tr>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </table>
             </main>
