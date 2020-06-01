@@ -1,24 +1,32 @@
 <?php
+/*
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+*/
 require('connect.php');
-require('request_db.php');
 require_once('helpers.php');
+$u_id = 1;
+
+/* Получение списка проектов у текущего пользователя */
+$project = "SELECT * FROM `project` WHERE `user_id` = $u_id";
+$result_project = mysqli_query($con, $project);
+$project_arr = mysqli_fetch_all($result_project, MYSQLI_ASSOC);
+
+/* вывод общего количества задач */
+$tasks = "SELECT * FROM `task` WHERE `user_id` = $u_id";
+$result_tasks = mysqli_query($con, $tasks);
+$task_array = mysqli_fetch_all($result_tasks, MYSQLI_ASSOC);
 
 $errors = [];
 $rules = [
-    'name' => function() {
-        return validateFilled('name');
+    'title' => function() {
+        return validateFilled('title');
     },
-    'date' => function() {
-        return is_date_valid('date');
+    'deadline' => function() {
+        return is_date_valid('deadline');
     }
 ];
-
-function add_task($title, $id_project, $date, $filename, $con) {
-    $u_id = 1;
-    $sql = "INSERT INTO `task` (`title`, `link`, `deadline`, `user_id`, `project_id`)
-    VALUES  ('$title','$filename', '$date', '$u_id', '$id_project');";
-    $result = mysqli_query($con, $sql);
-}
 
 if (isset($_POST['task-btn'])) {
     foreach ($_POST as $key => $value) {
@@ -29,31 +37,38 @@ if (isset($_POST['task-btn'])) {
     }
     $errors = array_filter($errors);
     if (!count($errors)) {
-        $title = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
-        $id_project = $_POST['project'];
-        $date = $_POST['date'];
-        $filename = null;
-            if (isset($_FILES['file'])) {
-            $filename = $_FILES['file']['name'];
+        $title = filter_var(trim($_POST['title']), FILTER_SANITIZE_STRING);
+        $id_project = $_POST['project_id'];
+        $date = NULL;
+        if ($_POST['deadline']) {
+            $date = $_POST['deadline'];
+        }
+        $filename = NULL;
+        if (isset($_FILES['link'])) {
+            $filename = $_FILES['link']['name'];
             $file_path = __DIR__ . '/uploads/';
-            move_uploaded_file($_FILES['file']['tmp_name'], $file_path . $filename);
-            }
-        add_task($title, $id_project, $date, $filename, $con);
-        header("Location: /index.php?id=$id_project&&s=2&&d=desc");
+            move_uploaded_file($_FILES['link']['tmp_name'], $file_path . $filename);
+        }
+        $sql = "INSERT INTO `task` (`title`, `link`, `deadline`, `user_id`, `project_id`)
+        VALUES  (?, ?, ?, ?, ?)";
+        $stmt = db_get_prepare_stmt($con, $sql, [$title,$filename, $date, $u_id, $id_project]);
+        $result = mysqli_stmt_execute($stmt);
+        if($result) {
+            header("Location: /index.php?id=$id_project");
+        }
     }
 }
 
 $add_block = include_template ('add-task.php',
 [
     'task_array' => $task_array,
-    'task_arr' => $task_arr,
     'project_arr' => $project_arr,
-    'show_complete_tasks' => $show_complete_tasks = rand(0, 1),
     'errors' => $errors
 ]);
 
 $layout_block = include_template('layout.php',
 [
+    'user_name' => 'Константин',
     'content' => $add_block,
     'title' => 'Добавление задачи'
 ]);

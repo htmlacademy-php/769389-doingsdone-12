@@ -176,3 +176,4 @@ function validateFilled($name) {
         return "Это поле должно быть заполнено";
     }
 }
+
