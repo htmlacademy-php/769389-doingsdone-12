@@ -61,6 +61,7 @@
                             <?php endif; ?>
                         </td>
                         <td class="task__date"><?=$item['deadline'];?></td>
+
                     </tr>
                     <?php endforeach; ?>
                 </table>

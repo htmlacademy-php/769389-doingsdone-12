@@ -9,28 +9,39 @@
     <link rel="stylesheet" href="css/flatpickr.min.css">
 </head>
 
-<body>
+<body class="<?= (!isset($_SESSION['user'])) ? 'body-background':'';?>">
 <h1 class="visually-hidden">Дела в порядке</h1>
 
 <div class="page-wrapper">
-    <div class="container container--with-sidebar">
+    <div class="container <?= (isset($_SESSION['user'])) ? 'container--with-sidebar':'';?>">
+
+        <?php if (isset($_SESSION['user'])): ?>
         <header class="main-header">
-            <a href="/">
+            <a href="index.php">
                 <img src="img/logo.png" width="153" height="42" alt="Логотип Дела в порядке">
             </a>
-
             <div class="main-header__side">
-                <a class="main-header__side-item button button--plus open-modal" href="pages/form-task.html">Добавить задачу</a>
+                <a class="main-header__side-item button button--plus open-modal" href="add.php">Добавить задачу</a>
 
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__data">
                         <p><?=$user_name;?></p>
 
-                        <a href="#">Выйти</a>
+                        <a href="logout.php">Выйти</a>
                     </div>
                 </div>
             </div>
         </header>
+        <?php else: ?>
+        <header class="main-header">
+            <a href="reg.php">
+                <img src="img/logo.png" width="153" height="42" alt="Логитип Дела в порядке">
+            </a>
+            <div class="main-header__side">
+                <a class="main-header__side-item button button--transparent" href="auth.php">Войти</a>
+            </div>
+        </header>
+        <?php endif; ?>
 
         <div class="content">
         <?=$content;?>
