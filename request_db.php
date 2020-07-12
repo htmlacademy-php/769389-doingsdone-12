@@ -1,9 +1,12 @@
 <?php
 require('connect.php');
 require_once('helpers.php');
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 
 /* Получение списка проектов у текущего пользователя */
-$u_id = 1;
+$u_id = $_SESSION['id'];
 
 $project = "SELECT * FROM `project` WHERE `user_id` = $u_id";
 $result_project = mysqli_query($con, $project);
