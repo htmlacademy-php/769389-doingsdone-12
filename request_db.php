@@ -1,9 +1,6 @@
 <?php
-require('connect.php');
 require_once('helpers.php');
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+require('connect.php');
 
 /* Получение списка проектов у текущего пользователя */
 $u_id = $_SESSION['id'];

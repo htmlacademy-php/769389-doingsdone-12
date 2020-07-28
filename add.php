@@ -6,7 +6,7 @@ ini_set('display_startup_errors', 1);
 */
 require('connect.php');
 require_once('helpers.php');
-$u_id = 1;
+$u_id = $_SESSION['id'];
 
 /* Получение списка проектов у текущего пользователя */
 $project = "SELECT * FROM `project` WHERE `user_id` = $u_id";
@@ -59,19 +59,8 @@ if (isset($_POST['task-btn'])) {
     }
 }
 
-$add_block = include_template ('add-task.php',
-[
-    'task_array' => $task_array,
-    'project_arr' => $project_arr,
-    'errors' => $errors
-]);
-
-$layout_block = include_template('layout.php',
-[
-    'user_name' => 'Константин',
-    'content' => $add_block,
-    'title' => 'Добавление задачи'
-]);
+$add_block = include_template ('add-task.php',['task_array' => $task_array, 'project_arr' => $project_arr, 'errors' => $errors]);
+$layout_block = include_template('layout.php',['user_name' => $_SESSION['name'], 'content' => $add_block, 'title' => 'Добавление задачи']);
 
 print($layout_block);
 ?>

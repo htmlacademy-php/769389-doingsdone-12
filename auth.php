@@ -1,10 +1,4 @@
 <?php
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-
-
 require('connect.php');
 require_once('helpers.php');
 
@@ -36,12 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $res = mysqli_query($con, $sql);
     $user = $res ? mysqli_fetch_array($res, MYSQLI_ASSOC) : null;
 
-
-    $sql_id = "SELECT id FROM user WHERE email = '$email'";
-    $res_id = mysqli_query($con, $sql_id);
-    $id_arr = mysqli_fetch_assoc($res_id);
-    $_SESSION['id'] = $id_arr['id'];
-
+    $_SESSION['id'] = $user['id'];
+    $_SESSION['name'] = $user['name'];
 
 
 	if (!count($errors) and $user) {
@@ -57,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	if (count($errors)) {
-		$page_content = include_template('authorization.php', ['form' => $form, 'errors' => $errors]);
+		$page_content = include_template('form-authorization.php', ['form' => $form, 'errors' => $errors]);
 	}
 	else {
 		header("Location: /index.php");
@@ -76,8 +66,11 @@ else {
 
 }
 
+$_SESSION['id'] = $user['id'];
+$_SESSION['name'] = $user['name'];
 
-$add_block = include_template ('form-authorization.php', $tpl_data, ['content' => $page_content, 'title' => 'Дела в Порядке | Вход']);
+$add_block = include_template ('form-authorization.php', $tpl_data, ['content' => $page_content ]);
+$layout_block = include_template('layout.php',['user_name' => 'Константин', 'content' => $add_block, 'title' => 'Дела в Порядке | Вход']);
 
-print($add_block );
+print($layout_block);
 ?>

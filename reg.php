@@ -47,5 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $add_block = include_template ('register-user.php', $tpl_data, ['title' => 'Дела в Порядке | Регистрация']);
-print($add_block );
+$layout_block = include_template('layout.php',['content' => $add_block, 'title' => 'Регистрация']);
+
+print($layout_block);
 ?>
+
