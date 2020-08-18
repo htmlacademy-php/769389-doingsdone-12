@@ -21,9 +21,9 @@ if (isset($_GET['id']) && $_GET['id']) {
 }
 $result_task = mysqli_query($con, $tasks);
 
-if (!mysqli_num_rows($result_task)) {
-    http_response_code(404);
-    exit();
-}
+// if (!mysqli_num_rows($result_task)) {
+//     http_response_code(404);
+//     exit();
+// }
 $task_arr = mysqli_fetch_all($result_task, MYSQLI_ASSOC);
 ?>

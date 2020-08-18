@@ -57,7 +57,12 @@
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
 
-        <a class="main-footer__button button button--plus" href="pages/form-task.html">Добавить задачу</a>
+        <?php if (isset($_SESSION['user'])): ?>
+            <a class="main-footer__button button button--plus" href="pages/form-task.html">Добавить задачу</a>
+        <?php else: ?>
+            <a></a>
+        <?php endif; ?>
+
 
         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>
