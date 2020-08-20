@@ -28,7 +28,7 @@
                 <?php $classname = isset($errors['title']) ? "form__input--error" : ""; ?>
                     <label class="form__label" for="name">Название <sup>*</sup></label>
                     <input class="form__input <?=$classname;?>" type="text" name="title" id="name" value="<?=getPostVal('title'); ?>" placeholder="Введите название">
-                    <span class="error_text"><?=$errors['title'] ?? ""; ?></span>
+                    <span class="error_text"><?=$errors['title'] ?? ''; ?></span>
             </div>
 
             <div class="form__row">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="form__row">
-                <?php $classname = isset($errors['deadline']) ? "form__input--error" : ""; ?>
+                <?php $classname = isset($errors['deadline']) ? 'form__input--error' : ''; ?>
                 <label class="form__label" for="date">Дата выполнения</label>
                     <input class="form__input form__input--date <?=$classname;?>" type="text" name="deadline" id="date" value="<?=getPostVal('deadline'); ?>" placeholder="Введите дату в формате ГГГГ-ММ-ДД">
                         <span class="error_text"><?=$errors['deadline'] ?? ""; ?></span>

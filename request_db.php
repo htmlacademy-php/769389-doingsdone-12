@@ -19,11 +19,7 @@ if (isset($_GET['id']) && $_GET['id']) {
     $id_project = mysqli_real_escape_string($con, intval($_GET['id']));
     $tasks .= " AND `project_id` = '$id_project' ";
 }
-$result_task = mysqli_query($con, $tasks);
 
-// if (!mysqli_num_rows($result_task)) {
-//     http_response_code(404);
-//     exit();
-// }
+$result_task = mysqli_query($con, $tasks);
 $task_arr = mysqli_fetch_all($result_task, MYSQLI_ASSOC);
 ?>

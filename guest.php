@@ -2,6 +2,6 @@
 require('connect.php');
 require_once('helpers.php');
 
-$add_block = include_template ('page-guest.php');
+$add_block = include_template('page-guest.php');
 print($add_block );
 ?>

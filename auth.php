@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$page_content = include_template('form-authorization.php', ['form' => $form, 'errors' => $errors]);
 	}
 	else {
-		header("Location: /index.php");
+		header('Location: /index.php');
 		exit();
     }
     $tpl_data['errors'] = $errors;
@@ -60,7 +60,7 @@ else {
     $page_content = include_template('authorization.php', []);
 
     if (isset($_SESSION['user'])) {
-        header("Location: /index.php");
+        header('Location: /index.php');
         exit();
     }
 
@@ -69,7 +69,7 @@ else {
 $_SESSION['id'] = $user['id'];
 $_SESSION['name'] = $user['name'];
 
-$add_block = include_template ('form-authorization.php', $tpl_data, ['content' => $page_content ]);
+$add_block = include_template('form-authorization.php', $tpl_data, ['content' => $page_content ]);
 $layout_block = include_template('layout.php',['user_name' => 'Константин', 'content' => $add_block, 'title' => 'Дела в Порядке | Вход']);
 
 print($layout_block);

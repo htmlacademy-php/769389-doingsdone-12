@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($res && empty($errors)) {
-            header("Location: /index.php");
+            header('Location: /index.php');
             exit();
         }
     }
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 
-$add_block = include_template ('register-user.php', $tpl_data, ['title' => 'Дела в Порядке | Регистрация']);
+$add_block = include_template('register-user.php', $tpl_data, ['title' => 'Дела в Порядке | Регистрация']);
 $layout_block = include_template('layout.php',['content' => $add_block, 'title' => 'Регистрация']);
 
 print($layout_block);

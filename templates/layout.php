@@ -60,7 +60,6 @@
         <?php if (isset($_SESSION['user'])): ?>
             <a class="main-footer__button button button--plus" href="pages/form-task.html">Добавить задачу</a>
         <?php else: ?>
-            <a></a>
         <?php endif; ?>
 
 

@@ -168,12 +168,12 @@ function task_important($date) {
 
 // Глава 6.5. Валидация форм
 function getPostVal($name) {
-    return $_POST[$name] ?? "";
+    return $_POST[$name] ?? '';
 }
 
 function validateFilled($name) {
     if (empty($_POST[$name])) {
-        return "Это поле должно быть заполнено";
+        return 'Это поле должно быть заполнено';
     }
 }
 
