@@ -28,3 +28,6 @@ CREATE TABLE `user` (
   `name` CHAR(50) NOT NULL , UNIQUE (`email`) ,
   `password` CHAR(64) NOT NULL , PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+
+CREATE FULLTEXT INDEX task_search ON task(title);
