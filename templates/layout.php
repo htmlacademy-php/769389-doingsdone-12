@@ -52,13 +52,13 @@
 <footer class="main-footer">
     <div class="container">
         <div class="main-footer__copyright">
-            <p>© 2019, «Дела в порядке»</p>
+            <p>© 2020, «Дела в порядке»</p>
 
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
 
         <?php if (isset($_SESSION['user'])): ?>
-            <a class="main-footer__button button button--plus" href="pages/form-task.html">Добавить задачу</a>
+            <a class="main-footer__button button button--plus" href="add.php">Добавить задачу</a>
         <?php else: ?>
         <?php endif; ?>
 
