@@ -1,0 +1,13 @@
+{
+    "name": "doingsdone/resurt",
+    "description": "Scheduler",
+    "authors": [
+        {
+            "name": "Resurt",
+            "email": "mr.roman-07@ya.ru"
+        }
+    ],
+    "require": {
+        "swiftmailer/swiftmailer": "^6.2"
+    }
+}
