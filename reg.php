@@ -4,7 +4,7 @@ require_once('helpers.php');
 
 $tpl_data = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form = $_POST;
     $errors = [];
 
