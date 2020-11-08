@@ -23,6 +23,12 @@ $rules = [
     }
 ];
 
+$form = $_POST;
+
+if (!empty($form['deadline']) && ($form['deadline'] < date('Y-m-d'))) {
+    $errors['lastDate'] = 'Дата уже прошла';
+}
+
 if (isset($_POST['task-btn'])) {
     foreach ($_POST as $key => $value) {
         if (isset($rules[$key])) {

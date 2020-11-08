@@ -48,6 +48,8 @@
                 <label class="form__label" for="date">Дата выполнения</label>
                     <input class="form__input form__input--date <?=$classname;?>" type="text" name="deadline" id="date" value="<?=getPostVal('deadline'); ?>" placeholder="Введите дату в формате ГГГГ-ММ-ДД">
                         <span class="error_text"><?=$errors['deadline'] ?? ""; ?></span>
+                        <?php $lastDate = isset($errors['lastDate']) ? 'Вы выбрали прошедшую дату' : ''; ?>
+                        <p class="form__message"><?=$lastDate;?></p>
             </div>
 
             <div class="form__row">
