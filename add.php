@@ -46,7 +46,7 @@ if (isset($_POST['task-btn'])) {
         }
         $filename = NULL;
         if (isset($_FILES['link'])) {
-            $filename = $_FILES['link']['name'];
+            $filename = $_FILES['link']['name'] .'_'.time();
             $file_path = __DIR__ . '/uploads/';
             move_uploaded_file($_FILES['link']['tmp_name'], $file_path . $filename);
         }
