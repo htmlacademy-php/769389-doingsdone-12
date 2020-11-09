@@ -66,8 +66,7 @@ else {
 
 }
 
-$_SESSION['id'] = $user['id'];
-$_SESSION['name'] = $user['name'];
+
 
 $add_block = include_template('form-authorization.php', $tpl_data, ['content' => $page_content ]);
 $layout_block = include_template('layout.php',['user_name' => 'Константин', 'content' => $add_block, 'title' => 'Дела в Порядке | Вход']);

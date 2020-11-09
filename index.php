@@ -37,7 +37,13 @@ if (isset($_GET['date_list'])) {
     $task_arr = mysqli_query($con, $sql);
 }
 
-$main_block = include_template('main.php', ['task_array' => $task_array, 'task_arr' => $task_arr, 'project_arr' => $project_arr, 'show_complete_tasks' => $show_complete_tasks = rand(0, 1)]);
+if (isset($_GET['show_completed'])) {
+    $show_complete_tasks = 0 + $_GET['show_completed'];
+} else {
+    $show_complete_tasks = 0;
+}
+
+$main_block = include_template('main.php', ['task_array' => $task_array, 'task_arr' => $task_arr, 'project_arr' => $project_arr, 'show_complete_tasks' => $show_complete_tasks]);
 $layout_block = include_template('layout.php', ['content' => $main_block, 'user_name' => $_SESSION['name'], 'title' => 'Дела в порядке | Главная']);
 print($layout_block);
 ?>

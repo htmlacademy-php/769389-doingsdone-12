@@ -23,6 +23,12 @@ $rules = [
     }
 ];
 
+$form = $_POST;
+
+if (!empty($form['deadline']) && ($form['deadline'] < date('Y-m-d'))) {
+    $errors['lastDate'] = 'Дата уже прошла';
+}
+
 if (isset($_POST['task-btn'])) {
     foreach ($_POST as $key => $value) {
         if (isset($rules[$key])) {
@@ -40,7 +46,7 @@ if (isset($_POST['task-btn'])) {
         }
         $filename = NULL;
         if (isset($_FILES['link'])) {
-            $filename = $_FILES['link']['name'];
+            $filename = $_FILES['link']['name'] .'_'.time();
             $file_path = __DIR__ . '/uploads/';
             move_uploaded_file($_FILES['link']['tmp_name'], $file_path . $filename);
         }

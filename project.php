@@ -7,11 +7,12 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
+$errors = [];
 require('request_db.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form = $_POST;
-    $errors = [];
+
 
     $required_fields = ['name'];
 
