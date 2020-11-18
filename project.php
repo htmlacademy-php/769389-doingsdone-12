@@ -1,6 +1,7 @@
 <?php
 require('connect.php');
 require_once('helpers.php');
+require_once('function.php');
 
 if (!isset($_SESSION['user'])) {
     header('Location: /guest.php');

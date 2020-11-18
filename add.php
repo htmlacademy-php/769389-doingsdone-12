@@ -1,18 +1,15 @@
 <?php
 require('connect.php');
 require_once('helpers.php');
+require_once('function.php');
+
+if (!isset($_SESSION['user'])) {
+    header('Location: /guest.php');
+    exit();
+}
+require('request_db.php');
+
 $u_id = $_SESSION['id'];
-
-/* Получение списка проектов у текущего пользователя */
-$project = "SELECT * FROM `project` WHERE `user_id` = $u_id";
-$result_project = mysqli_query($con, $project);
-$project_arr = mysqli_fetch_all($result_project, MYSQLI_ASSOC);
-
-/* вывод общего количества задач */
-$tasks = "SELECT * FROM `task` WHERE `user_id` = $u_id";
-$result_tasks = mysqli_query($con, $tasks);
-$task_array = mysqli_fetch_all($result_tasks, MYSQLI_ASSOC);
-
 $errors = [];
 $rules = [
     'title' => function() {
@@ -45,7 +42,7 @@ if (isset($_POST['task-btn'])) {
             $date = $_POST['deadline'];
         }
         $filename = NULL;
-        if (isset($_FILES['link'])) {
+        if (isset($_FILES['link']) && !empty($_FILES['link']['name'])) {
             $filename = $_FILES['link']['name'] .'_'.time();
             $file_path = __DIR__ . '/uploads/';
             move_uploaded_file($_FILES['link']['tmp_name'], $file_path . $filename);
@@ -54,7 +51,7 @@ if (isset($_POST['task-btn'])) {
         VALUES  (?, ?, ?, ?, ?)";
         $stmt = db_get_prepare_stmt($con, $sql, [$title,$filename, $date, $u_id, $id_project]);
         $result = mysqli_stmt_execute($stmt);
-        if($result) {
+        if ($result) {
             header("Location: /index.php?id=$id_project");
         }
     }

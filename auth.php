@@ -1,6 +1,7 @@
 <?php
 require('connect.php');
 require_once('helpers.php');
+require_once('function.php');
 
 $tpl_data = [];
 
@@ -37,26 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (!count($errors) and $user) {
 		if (password_verify($form['password'], $user['password'])) {
 			$_SESSION['user'] = $user;
-		}
-		else {
+		}   else    {
 			$errors['passwordError'] = 'Неверный пароль';
 		}
-	}
-	else {
+	}   else    {
 		$errors['emailEmpty'] = 'Такой пользователь не найден';
 	}
 
 	if (count($errors)) {
 		$page_content = include_template('form-authorization.php', ['form' => $form, 'errors' => $errors]);
-	}
-	else {
+	}   else    {
 		header('Location: /index.php');
 		exit();
     }
     $tpl_data['errors'] = $errors;
     $tpl_data['values'] = $form;
-}
-else {
+}   else    {
     $page_content = include_template('authorization.php', []);
 
     if (isset($_SESSION['user'])) {

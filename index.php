@@ -1,7 +1,7 @@
 <?php
 require('connect.php');
-
 require_once('helpers.php');
+require_once('function.php');
 
 if (!isset($_SESSION['user'])) {
     header('Location: /guest.php');
@@ -9,19 +9,6 @@ if (!isset($_SESSION['user'])) {
 }
 require('request_db.php');
 require('task-completed.php');
-
-function getSearchTasks ($con, $search) {
-    $u_id = $_SESSION['id'];
-    $sql = 'SELECT * FROM task WHERE user_id = "' . $u_id . '" AND MATCH(title) AGAINST (? IN BOOLEAN MODE)';
-
-    $stmt = mysqli_prepare($con, $sql);
-    mysqli_stmt_bind_param($stmt, 's', $search);
-    mysqli_stmt_execute($stmt);
-    $res = mysqli_stmt_get_result($stmt);
-
-    $task_arr = mysqli_fetch_all($res, MYSQLI_ASSOC);
-    return $task_arr;
-}
 
 if (isset($_GET['search'])) {
     $search = trim(filter_input(INPUT_GET, 'search', FILTER_SANITIZE_SPECIAL_CHARS));

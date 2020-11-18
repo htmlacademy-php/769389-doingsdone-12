@@ -24,7 +24,7 @@
         <form class="form"  action="project.php" method="post" autocomplete="off">
             <div class="form__row">
                 <label class="form__label" for="project_name">Название <sup>*</sup></label>
-                <input class="form__input" type="text" name="name" id="project_name" value="" placeholder="Введите название проекта">
+                <input class="form__input" type="text" name="name" id="project_name" value="<?=htmlspecialchars(getPostVal('name')); ?>" placeholder="Введите название проекта">
                     <?php $projectInput = isset($errors['name']) ? 'Введите название проекта' : ''; ?>
                     <p class="form__message"><?=$projectInput;?></p>
                     <?php $doubleProject = (!isset($errors['name'])) && (isset($errors['doubleProject'])) ? 'Такой проект уже есть' : ''; ?>

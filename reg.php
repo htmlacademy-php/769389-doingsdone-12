@@ -1,6 +1,7 @@
 <?php
 require('connect.php');
 require_once('helpers.php');
+require_once('function.php');
 
 $tpl_data = [];
 

@@ -1,6 +1,7 @@
 <?php
-require_once('helpers.php');
 require('connect.php');
+require_once('helpers.php');
+require_once('function.php');
 
 /* Получение списка проектов у текущего пользователя */
 $u_id = $_SESSION['id'];
