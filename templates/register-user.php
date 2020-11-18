@@ -9,7 +9,7 @@
                         <div class="form__row">
                             <?php $classname = isset($errors['email']) ? 'form__input--error' : ''; ?>
                             <label class="form__label" for="email">E-mail <sup>*</sup></label>
-                            <input class="form__input <?=$classname;?>" type="text" name="email" id="email" value="<?=$values['email'] ?? ''; ?>" placeholder="Введите e-mail">
+                            <input class="form__input <?=$classname;?>" type="text" name="email" id="email" value="<?=htmlspecialchars($values['email']) ?? ''; ?>" placeholder="Введите e-mail">
                             <?php $emailInput = isset($errors['email']) ? 'Введите E-mail' : ''; ?>
                             <p class="form__message"><?=$emailInput;?></p>
                             <?php $errorMessage = isset($errors['emailError']) ? 'E-mail введён некорректно' : ''; ?>
@@ -21,7 +21,7 @@
                         <div class="form__row">
                             <?php $classname = isset($errors['password']) ? 'form__input--error' : ''; ?>
                             <label class="form__label" for="password">Пароль <sup>*</sup></label>
-                            <input class="form__input <?=$classname;?>" type="password" name="password" id="password" value="<?=$values['password'] ?? ''; ?>" placeholder="Введите пароль">
+                            <input class="form__input <?=$classname;?>" type="password" name="password" id="password" value="<?=htmlspecialchars($values['password']) ?? ''; ?>" placeholder="Введите пароль">
                             <?php $passwordInput = isset($errors['password']) ? 'Введитsе пароль' : ''; ?>
                             <p class="form__message"><?=$passwordInput;?></p>
                         </div>
@@ -29,7 +29,7 @@
                         <div class="form__row">
                             <?php $classname = isset($errors['name']) ? 'form__input--error' : ''; ?>
                             <label class="form__label" for="name">Имя <sup>*</sup></label>
-                            <input class="form__input <?=$classname;?>" type="text" name="name" id="name" value="<?=$values['name'] ?? ''; ?>" placeholder="Введите имя">
+                            <input class="form__input <?=$classname;?>" type="text" name="name" id="name" value="<?=htmlspecialchars($values['name']) ?? ''; ?>" placeholder="Введите имя">
                             <?php $passwordInput = isset($errors['name']) ? 'Введитsе ваше имя' : ''; ?>
                             <p class="form__message"><?=$passwordInput;?></p>
                         </div>

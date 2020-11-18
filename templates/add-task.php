@@ -27,7 +27,7 @@
             <div class="form__row">
                 <?php $classname = isset($errors['title']) ? "form__input--error" : ""; ?>
                     <label class="form__label" for="name">Название <sup>*</sup></label>
-                    <input class="form__input <?=$classname;?>" type="text" name="title" id="name" value="<?=getPostVal('title'); ?>" placeholder="Введите название">
+                    <input class="form__input <?=$classname;?>" type="text" name="title" id="name" value="<?=htmlspecialchars(getPostVal('title')); ?>" placeholder="Введите название">
                     <span class="error_text"><?=$errors['title'] ?? ''; ?></span>
             </div>
 
@@ -55,7 +55,7 @@
             <div class="form__row">
                 <label class="form__label" for="file">Файл</label>
                 <div class="form__input-file">
-                    <input class="visually-hidden" type="file" name="link" id="file" value="<?=getPostVal('link'); ?>">
+                    <input class="visually-hidden" type="file" name="link" id="file" value="">
                         <label class="button button--transparent" for="file">
                             <span>Выберите файл</span>
                         </label>
