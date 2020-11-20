@@ -9,11 +9,11 @@
 <body>
 <h1>Задачи на сегодня</h1>
 
-<p>Уважаемый(ая), <?=$user_name;?></p>
+<p>Уважаемый(ая), <?= $user_name; ?></p>
 <p>У вас запланирована(ы) задача(и): </p>
 <ul>
     <?php foreach ($todayListUser as $value) : ?>
-        <li><?=$value['title']; ?> на <?=$value['deadline']; ?></li>
+        <li><?= $value['title']; ?> на <?= $value['deadline']; ?></li>
     <?php endforeach; ?>
 
 </ul>

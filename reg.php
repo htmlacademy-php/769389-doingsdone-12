@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($_POST[$field])) {
             $errors[$field] = 'Поле не заполнено';
         }
-  }
+    }
 
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['emailError'] = 'E-mail введён некорректно';
@@ -28,8 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (mysqli_num_rows($res) > 0) {
             $errors['doubleEmail'] = 'Пользователь с этим email уже зарегистрирован';
-        }
-        else {
+        } else {
             $password = password_hash($form['password'], PASSWORD_DEFAULT);
 
             $sql = 'INSERT INTO user (reg_date, email, name, password) VALUES (NOW(), ?, ?, ?)';
@@ -48,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $add_block = include_template('register-user.php', $tpl_data, ['title' => 'Дела в Порядке | Регистрация']);
-$layout_block = include_template('layout.php',['content' => $add_block, 'title' => 'Регистрация']);
+$layout_block = include_template('layout.php', ['content' => $add_block, 'title' => 'Регистрация']);
 
 print($layout_block);
 ?>
