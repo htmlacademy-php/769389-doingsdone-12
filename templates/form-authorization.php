@@ -10,23 +10,25 @@
             <div class="form__row">
                 <?php $classname = isset($errors['email']) ? 'form__input--error' : ''; ?>
                 <label class="form__label" for="email">E-mail <sup>*</sup></label>
-                <input class="form__input <?=$classname;?>" type="text" name="email" id="email" value="<?=htmlspecialchars($values['email']) ?? ''; ?>" placeholder="Введите e-mail">
+                <input class="form__input <?= $classname; ?>" type="text" name="email" id="email"
+                       value="<?= htmlspecialchars($values['email']) ?? ''; ?>" placeholder="Введите e-mail">
                 <?php $emailInput = isset($errors['email']) ? 'Введите E-mail' : ''; ?>
-                <p class="form__message"><?=$emailInput;?></p>
+                <p class="form__message"><?= $emailInput; ?></p>
                 <?php $emailError = isset($errors['emailError']) ? 'E-mail введён некорректно' : ''; ?>
-                <p class="form__message"><?=$emailError;?></p>
+                <p class="form__message"><?= $emailError; ?></p>
                 <?php $emailEmpty = (isset($errors['emailEmpty'])) && (!isset($errors['emailError'])) && (!isset($errors['email'])) ? 'Такой пользователь не найден' : ''; ?>
-                <p class="form__message"><?=$emailEmpty;?></p>
+                <p class="form__message"><?= $emailEmpty; ?></p>
             </div>
 
             <div class="form__row">
                 <?php $classname = isset($errors['email']) ? 'form__input--error' : ''; ?>
                 <label class="form__label" for="password">Пароль <sup>*</sup></label>
-                <input class="form__input <?=$classname;?>" type="password" name="password" id="password" value="<?=htmlspecialchars($values['password']) ?? ''; ?>" placeholder="Введите пароль">
+                <input class="form__input <?= $classname; ?>" type="password" name="password" id="password"
+                       value="<?= htmlspecialchars($values['password']) ?? ''; ?>" placeholder="Введите пароль">
                 <?php $passwordInput = isset($errors['password']) ? 'Введитsе пароль' : ''; ?>
-                <p class="form__message"><?=$passwordInput;?></p>
+                <p class="form__message"><?= $passwordInput; ?></p>
                 <?php $passwordError = isset($errors['passwordError']) ? 'Неверный пароль' : ''; ?>
-                <p class="form__message"><?=$passwordError;?></p>
+                <p class="form__message"><?= $passwordError; ?></p>
             </div>
 
             <div class="form__row form__row--controls">

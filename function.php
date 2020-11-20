@@ -8,7 +8,8 @@
  *
  * @return array массив задач из строки поиска
  */
-function getSearchTasks ($con, $search) {
+function getSearchTasks($con, $search)
+{
     $u_id = $_SESSION['id'];
     $sql = 'SELECT * FROM task WHERE user_id = "' . $u_id . '" AND MATCH(title) AGAINST (? IN BOOLEAN MODE)';
 
@@ -29,7 +30,8 @@ function getSearchTasks ($con, $search) {
  *
  * @return integer общее количество задач в конкретном проекте
  */
-function calc($array_tasks, $project) {
+function calc($array_tasks, $project)
+{
     $i = 0;
     foreach ($array_tasks as $value) {
         if ($value['project_id'] == $project['id']) {
@@ -46,10 +48,11 @@ function calc($array_tasks, $project) {
  *
  * @return bool true при истечении срока выполнения задачи менее чем через 24 часа, иначе false
  */
-function task_important($date) {
-    if(isset($date)) {
+function task_important($date)
+{
+    if (isset($date)) {
         $today = date('d.m.y.');
-        $dif = (strtotime($date) - strtotime($today))/3600;
+        $dif = (strtotime($date) - strtotime($today)) / 3600;
         if ($dif <= 24) {
             return true;
         }
@@ -64,7 +67,8 @@ function task_important($date) {
  *
  * @return string Возвращает строку введенную пользователем, если форма отправленна с ошибкой.
  */
-function getPostVal($name) {
+function getPostVal($name)
+{
     return $_POST[$name] ?? '';
 }
 
@@ -75,7 +79,8 @@ function getPostVal($name) {
  *
  * @return string текст ошибки
  */
-function validateFilled($name) {
+function validateFilled($name)
+{
     if (empty($_POST[$name])) {
         return 'Это поле должно быть заполнено';
     }
@@ -89,7 +94,8 @@ function validateFilled($name) {
  *
  * @return "sql" запрос на получение всех тасков с привязкой к дате (today, tomorrow, expired)
  */
-function show_tasks_by_date ($user_id, $tab) {
+function show_tasks_by_date($user_id, $tab)
+{
 
     if ($tab == 'today') {
         $sql = 'SELECT id, pubdate, status, title, link, deadline, user_id, project_id FROM task ' . 'WHERE user_id = "' . $user_id . '" AND deadline = CURDATE()';

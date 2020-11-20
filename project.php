@@ -30,8 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (mysqli_num_rows($res) > 0) {
             $errors['doubleProject'] = 'Такой проект уже существует';
-        }
-        else {
+        } else {
 
             $user_id = $_SESSION['id'];
             $sql = 'INSERT INTO project (title, user_id) VALUES (?, ?)';
@@ -40,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($res && empty($errors)) {
-             header('Location: /index.php');
-             exit();
-         }
+            header('Location: /index.php');
+            exit();
+        }
     }
 
 }
